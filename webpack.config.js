@@ -7,7 +7,8 @@ module.exports = {
     entry: __dirname + "/app/index.js", 
     output: {
         path: __dirname + "/build",
-        filename: "bundle-[hash].js"
+        filename: "bundle-[hash].js",
+        publicPath: '/'
     },
     devtool: 'sourcemap',
     devServer: {
@@ -18,6 +19,12 @@ module.exports = {
     },
     module: {
         rules: [{
+            test: /(\.jsx|\.js)$/,
+            use: {
+                loader: "react-hot-loader"
+            },
+            exclude: /node_modules/
+        }, {
             test: /(\.jsx|\.js)$/,
             use: {
                 loader: "babel-loader"

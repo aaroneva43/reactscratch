@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { createStore } from 'redux'
 import { Provider, connect } from 'react-redux'
 
-import { Router, Route, hashHistory } from 'react-router'
+import { Router, Route, browserHistory } from 'react-router'
 
 class Counter extends Component {
     render() {
@@ -74,8 +74,8 @@ const Bpp = connect(
 ReactDOM.render(
 
     <Provider store={store}>
-        <Router history={hashHistory}>
-            <Route path="/a" component={App} />
+        <Router history={browserHistory}>
+            <Route path="/" component={App} />
             <Route path="/b" component={Bpp} />
         </Router>
     </Provider>,

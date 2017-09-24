@@ -15,7 +15,8 @@ module.exports = {
         contentBase: "./public", //本地服务器所加载的页面所在的目录
         historyApiFallback: true, //不跳转
         inline: true,
-        hot: true
+        hot: true,
+        // compress: true
     },
     module: {
         rules: [{
@@ -35,12 +36,7 @@ module.exports = {
             use: extractTextPlugin.extract({
                 fallback: "style-loader",
                 use: [{
-                    loader: "css-loader",
-                    options: {
-                        modules: true
-                    }
-                }, {
-                    loader: "postcss-loader"
+                    loader: "css-loader"
                 }],
             })
         }
@@ -48,7 +44,7 @@ module.exports = {
         ]
     },
     plugins: [
-        new webpack.BannerPlugin('版权所有，翻版必究'),
+        new webpack.BannerPlugin('All Rights Reserved'),
         new htmlWebpackPlugin({
             template: __dirname + "/app/index.tpl.html" //new 一个这个插件的实例，并传入相关的参数
         }),

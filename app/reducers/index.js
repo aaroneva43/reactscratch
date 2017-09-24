@@ -7,7 +7,7 @@ const posts = (
 
     }, action) => {
     switch (action.type) {
-        case INVALIDATE_REDDIT:
+        case INVALIDATE_POSTS:
             return {
                 ...state,
                 didInvalidate: true
@@ -25,6 +25,14 @@ const posts = (
                 didInvalidate: false,
                 items: action.posts,
                 lastUpdated: action.receivedAt
+            }
+        case REQUEST_FAILED: 
+            return {
+                ...state,
+                isFetching: false,
+                didInvalidate: true,
+                items: [],
+                msg: action.msg
             }
         default:
             return state

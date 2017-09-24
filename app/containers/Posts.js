@@ -4,8 +4,8 @@ import PropTypes from 'prop-types'
 import { createStore } from 'redux'
 import { Provider, connect } from 'react-redux'
 
-import PostList from '../components/PostList'
-export default class Posts extends Comment {
+import {PostList} from '../components/PostList'
+class Posts extends Component {
     static propTypes = {
         posts: PropTypes.array.isRequired,
         isFetching: PropTypes.bool.isRequired,
@@ -18,10 +18,20 @@ export default class Posts extends Comment {
         return (
 
             <div>
-                <button onClick={this.props.dispatch({type: 'REQUEST', payload: ''})}>load posts</button>
+                <button onClick={this.props.dispatch({ type: 'REQUEST', payload: '' })}>load posts</button>
                 <a hidden={!isFetching}>loading...</a>
                 <PostList posts={posts}></PostList>
             </div>
         )
     }
 }
+
+
+export default connect((state) => {
+    const {posts, isFetching, dispatch} = state
+    return {
+        posts: posts || [],
+        isFetching: !!isFetching,
+        dispatch: dispatch
+    }
+ }, () => ({}))(Posts)

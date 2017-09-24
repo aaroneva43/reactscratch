@@ -4,8 +4,8 @@ import Api from '../api'
 
 function* fetchPosts(action) {
     try {
-        const user = yield call(Api.fetch, action.payload);
-        yield put({ type: "RECEIVE_POSTS", user: user });
+        const posts = yield call(Api.fetch, action.payload);
+        yield put({ type: "RECEIVE_POSTS", posts: posts });
     } catch (e) {
         yield put({ type: "REQUEST_FAILED", message: e.message });
     }

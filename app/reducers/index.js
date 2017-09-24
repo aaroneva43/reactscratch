@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux'
 
+import { INVALIDATE_POSTS, REQUEST_POSTS, RECEIVE_POSTS, REQUEST_FAILED } from '../actions'
+
 const posts = (
     state = {
         isFetching: false,
@@ -26,7 +28,7 @@ const posts = (
                 items: action.posts,
                 lastUpdated: action.receivedAt
             }
-        case REQUEST_FAILED: 
+        case REQUEST_FAILED:
             return {
                 ...state,
                 isFetching: false,

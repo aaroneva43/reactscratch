@@ -1,0 +1,10 @@
+$nav-color: #F90;
+
+.nav {
+  $width: 100px;
+  width: $width;
+  color: $nav-color;
+
+}
+
+.nav a { margin: 0 20px; color: $nav-color}

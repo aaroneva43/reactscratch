@@ -1,0 +1,37 @@
+{
+    "posts": [
+        {
+            "id": 1,
+            "title": "json-server",
+            "author": "typicode"
+        }
+    ],
+    "menu": {
+        "name": "root",
+        "children": [
+            {
+                "name": "Dashboard",
+                "children": [
+                    {
+                        "name": "Monitor",
+                        "children": [{
+                            "name": "Overview",
+                            "url": "/"
+                        }]
+                    },
+                    {
+                        "name": "Device"
+                    }
+                ]
+            },
+            {
+                "name": "Config",
+                "children": [
+                    {
+                        "name": "Device"
+                    }
+                ]
+            }
+        ]
+    }
+}

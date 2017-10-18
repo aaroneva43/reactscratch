@@ -42,7 +42,7 @@ class Posts extends Component {
         return (
 
             <div>
-                <button onClick={() => { this.props.dispatch({ type: 'REQUEST_POSTS', payload: '' }) }}>load posts</button>
+                <button onClick={() => { this.props.dispatch({ type: 'REQUEST_POSTS', payload: '' }) }}>load postsss</button>
                 <button onClick={() => { this.setState({ modal_visible: true }) }}>show modal</button>
                 <DatePicker />
                 <a hidden={!isFetching}>loading...</a>

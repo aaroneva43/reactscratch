@@ -10,7 +10,7 @@
             {
                 "libraryName": "antd",
                 "style": "css",
-                "libraryTarget": "es6"
+                "libraryDirectory": "es"
             }
         ]
     ]

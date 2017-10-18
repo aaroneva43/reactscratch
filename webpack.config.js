@@ -4,7 +4,7 @@ const htmlWebpackPlugin = require('html-webpack-plugin');
 const extractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-    entry: __dirname + "/app/index.js", 
+    entry: __dirname + "/app/index.js",
     output: {
         path: __dirname + "/build",
         filename: "bundle-[hash].js",
@@ -21,17 +21,19 @@ module.exports = {
     module: {
         rules: [{
             test: /(\.jsx|\.js)$/,
-            use: {
+            use: [{
                 loader: "react-hot-loader"
-            },
+            }, {
+                loader: "babel-loader"
+            }],
             exclude: /node_modules/
-        }, {
+        }, /* {
             test: /(\.jsx|\.js)$/,
             use: {
-                loader: "babel-loader"
+                loader: ""
             },
             exclude: /node_modules/
-        }, {
+        },  */{
             test: /\.css$/,
             use: extractTextPlugin.extract({
                 fallback: "style-loader",
@@ -39,6 +41,17 @@ module.exports = {
                     loader: "css-loader"
                 }],
             })
+        }, {
+            test: /\.scss$/,
+            use: extractTextPlugin.extract({
+                fallback: "style-loader",
+                use: [{
+                    loader: "css-loader"
+                },{
+                    loader: "sass-loader"
+                }],
+            }),
+            exclude: /node_modules/
         }
 
         ]

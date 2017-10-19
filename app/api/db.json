@@ -14,13 +14,17 @@
                 "children": [
                     {
                         "name": "Monitor",
-                        "children": [{
-                            "name": "Overview",
-                            "url": "/"
-                        }]
+                        "url": "/monitor"
                     },
                     {
-                        "name": "Device"
+                        "name": "Device",
+                        "url": "/monitor_device",
+                        "children": [
+                            {
+                                "name": "Overview",
+                                "url": "/monitor_device_overview"
+                            }
+                        ]
                     }
                 ]
             },
@@ -28,7 +32,8 @@
                 "name": "Config",
                 "children": [
                     {
-                        "name": "Device"
+                        "name": "Device",
+                        "url": "/device"
                     }
                 ]
             }

@@ -23,6 +23,8 @@ import reducers from './reducers'
 import Posts from './containers/Posts'
 import styles from './index.scss'
 
+import Devices from './containers/Devices'
+
 const history = createHistory()
 const sagaMiddleWare = createSagaMiddleware();
 const middleware = [sagaMiddleWare, routerMiddleware(history)]
@@ -56,7 +58,7 @@ const Menu = () => (
         return (<div>
 
             <div className="nav">
-                <Link to="/">home</Link>
+                <Link to="/" >home</Link>
                 <Link to="/about/">about</Link>
 
             </div>
@@ -79,7 +81,7 @@ const App = () => (
             <Menu />
 
             <div>
-                <Route exact path="/" component={Home} />
+                <Route exact path="/" component={Home} component={Devices} />
                 <Route path="/about/:id?"
                     render={
                         ({ history, location, match }) => {

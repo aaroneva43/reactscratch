@@ -1,12 +1,15 @@
-
+import utils from '../utils'
 
 export default {
-    fetch: (
-        entity = 'posts',
-        params = '',
-        url = 'https://jsonplaceholder.typicode.com/posts'
-    ) => {
-        return fetch(url + '/' + params)
-            .then(response => response.json())
+
+    getConfig: (cfg) => {
+        cfg = {
+            entry: cfg.entry || '',
+            params: cfg.params || {}
+        }
+
+        let url = `${APP_CONFIG.api_url}/${cfg.entry}?${utils.serializeParams(cfg.params)}`
+
+        return fetch(url).then(response => response.json())
     }
 }

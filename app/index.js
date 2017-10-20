@@ -40,26 +40,60 @@ const store = createStore(combineReducers({
     router: routerReducer //sync route with redux status
 }), composeEnhancers(applyMiddleware(...middleware)))
 
+// run saga, watch 
 sagaMiddleWare.run(sagas)
 
 
+const Modal = ({ match, history }) => {
 
-const Home = (props) => {
-    const { history } = props
-    return <div>
-        <p onClick={() => { history.push('/about/A') }} >A</p>
-        <p onClick={() => { history.push('/about/B') }} >B</p>
-    </div>
+    const back = (e) => {
+        e.stopPropagation()
+        history.goBack()
+    }
+    return (
+        <div
+            onClick={back}
+            style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                bottom: 0,
+                right: 0,
+                background: 'rgba(0, 0, 0, 0.15)'
+            }}
+        >
+            <div className='modal' style={{
+                position: 'absolute',
+                background: '#fff',
+                top: 25,
+                left: '10%',
+                right: '10%',
+                padding: 15,
+                border: '2px solid #444'
+            }}>
+                <h1>{123}</h1>
+                <div color={'#pink'} />
+                <button type='button' onClick={back}>
+                    Close
+          </button>
+            </div>
+        </div>
+    )
 }
+const previousLocation = ''
 
 const Menu = () => (
-    <Route render={({ location: { pathname }, history }) => {
+    <Route render={({ location, location: { pathname }, history }) => {
 
         return (<div>
 
             <div className="nav">
                 <Link to="/" >home</Link>
                 <Link to="/about/">about</Link>
+                <Link to={{
+                    pathname: `/modal/`,
+                    state: { modal: true }
+                }}>modal</Link>
 
             </div>
             <div hidden={!/\/about\/[^\/]+/.test(pathname)}>
@@ -74,31 +108,48 @@ const Menu = () => (
     } />
 )
 
-const App = () => (
-    <ConnectedRouter basename="/somedir" history={history}>
+
+const Main = ({ location }) => {
+    return (
+        <div>
+            <Route exact
+                path="/"
+                component={Devices}
+            />
+
+            <Route path="/about/:id?"
+                render={
+                    ({ history, location, match }) => {
+                        console.log(match.params.id)
+                        return (<div>
+                            {match.params.id || 'about'}
+                        </div>)
+                    }
+
+                }
+            />
+            <Route exact
+                path="/modal/"
+                component={Modal}
+            />
+
+        </div>
+    )
+}
+const App = () => {
+    
+    return (<ConnectedRouter basename="/somedir" history={history}>
 
         <div>
             <Menu />
 
-            <div>
-                <Route exact path="/" component={Home} component={Devices} />
-                <Route path="/about/:id?"
-                    render={
-                        ({ history, location, match }) => {
-                            console.log(match.params.id)
-                            return (<div>
-                                {match.params.id || 'about'}
-                            </div>)
-                        }
-
-                    }
-                />
-
-            </div>
+            <Main />
 
         </div>
-    </ConnectedRouter>
-)
+    </ConnectedRouter>)
+}
+
+
 
 
 ReactDOM.render(

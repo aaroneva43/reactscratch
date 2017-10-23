@@ -35,10 +35,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 
 // create store
-const store = createStore(combineReducers({
-    ...reducers,
-    router: routerReducer //sync route with redux status
-}), composeEnhancers(applyMiddleware(...middleware)))
+const store = createStore(reducers, composeEnhancers(applyMiddleware(...middleware)))
 
 // run saga, watch 
 sagaMiddleWare.run(sagas)

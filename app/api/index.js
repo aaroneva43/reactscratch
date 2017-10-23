@@ -1,5 +1,8 @@
 import utils from '../utils'
 
+
+const API_BASE = 'http://172.22.2.231:8181/rest/v1'
+
 export default {
 
     getConfig: (cfg) => {
@@ -8,8 +11,6 @@ export default {
             params: cfg.params || {}
         }
 
-        let url = `${APP_CONFIG.api_url}/${cfg.entry}?${utils.serializeParams(cfg.params)}`
-
-        return fetch(url).then(response => response.json())
+        return fetch(`${API_BASE}/${cfg.entry}?${utils.serializeParams(cfg.params)}`).then(response => response.json())
     }
 }

@@ -17,7 +17,8 @@
     "redux": "^3.5.2",
     "redux-action-tools": "^1.2.2",
     "redux-saga": "^0.15.6",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "immutable": "3.8.2"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",

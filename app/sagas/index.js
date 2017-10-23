@@ -5,8 +5,9 @@ import * as types from '../actions/ActionTypes'
 
 function* getConfig(action) {
     try {
-        const config = yield call(API.getConfig, action.payload)
-        yield put({ type: types.GET_CONFIG + '/SUCCESS', config: config })
+        const data = yield call(API.getConfig, action.payload)
+        
+        yield put({ type: types.GET_CONFIG + '/SUCCESS', data: data.result })
     } catch (e) {
         yield put({ type: types.GET_CONFIG + '/FAIL', message: e.message })
     }

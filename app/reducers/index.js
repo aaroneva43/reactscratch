@@ -1,46 +1,53 @@
 import { combineReducers } from 'redux'
+import { GET_CONFIG, INVALIDATE_CONFIG } from '../actions/ActionTypes'
+import _ from 'lodash'
+import Immu from 'immutable'
 
-import { INVALIDATE_POSTS, REQUEST_POSTS, RECEIVE_POSTS, REQUEST_FAILED } from '../actions'
+window.Immu = Immu  // debug
 
-const posts = (
-    state = {
-        isFetching: false,
-        items: []
 
-    }, action) => {
+// config
+export const config = (state = {}, action) => {
+
+    const entries = _.castArray(_.get(action, 'payload.entry')),
+        entry = entries[0] || ''
+        debugger
     switch (action.type) {
-        case INVALIDATE_POSTS:
+
+        case GET_CONFIG:
+
+            return Immu.fromJS(state).mergeDeep(_.set({}, entry.split('/'), {
+                loading: true
+            })).toJS()
+
+        case `${GET_CONFIG}/SUCCESS'`:
+        
+
+            return Immu.fromJS(state).mergeDeep(_.set({}, entry.split('/'), {
+                loading: false,
+                data: action.data
+            })).toJS()
+
+        case `${GET_CONFIG}/FAIL'`:
+
+            return Immu.fromJS(state).mergeDeep(_.set({}, entry.split('/'), {
+                loading: false,
+                data: []
+            })).toJS()
+
+
+
+        case INVALIDATE_CONFIG:
             return {
                 ...state,
-                didInvalidate: true
+                loading: false,
+                data: []
             }
-        case REQUEST_POSTS:
-            return {
-                ...state,
-                isFetching: true,
-                didInvalidate: false
-            }
-        case RECEIVE_POSTS:
-            return {
-                ...state,
-                isFetching: false,
-                didInvalidate: false,
-                items: action.posts,
-                lastUpdated: action.receivedAt
-            }
-        case REQUEST_FAILED:
-            return {
-                ...state,
-                isFetching: false,
-                didInvalidate: true,
-                items: [],
-                msg: action.msg
-            }
+
         default:
             return state
     }
 }
-
 export default combineReducers({
-    posts
+    config
 })

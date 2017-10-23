@@ -21,6 +21,7 @@
     "immutable": "3.8.2"
   },
   "devDependencies": {
+    "babel-cli": "6.26.0",
     "babel-core": "^6.25.0",
     "babel-loader": "7.1.2",
     "babel-plugin-import": "1.6.2",
@@ -30,15 +31,19 @@
     "babel-preset-stage-0": "^6.24.1",
     "babel-preset-stage-2": "^6.13.0",
     "browser-sync": "2.18.13",
+    "chokidar": "1.7.0",
     "css-loader": "0.28.7",
     "extract-text-webpack-plugin": "3.0.0",
     "gulp-load-plugins": "^1.5.0",
     "history": "^4.7.2",
     "html-webpack-plugin": "2.30.1",
+    "json-server": "0.12.0",
     "node-sass": "4.5.3",
+    "path": "^0.12.7",
     "postcss-loader": "^2.0.6",
     "react-hot-loader": "^1.3.1",
     "sass-loader": "6.0.6",
+    "server-destroy": "1.0.1",
     "style-loader": "^0.18.2",
     "webpack": "3.6.0",
     "webpack-dev-server": "2.8.2",
@@ -46,6 +51,7 @@
     "webpack-stream": "^4.0.0"
   },
   "scripts": {
-    "start": "webpack-dev-server --inline --hot"
+    "start": "webpack-dev-server --inline --hot",
+    "start:mock": "babel-node tools/mock.js"
   }
 }

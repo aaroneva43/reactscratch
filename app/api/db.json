@@ -1,7 +1,7 @@
 {
     "posts": [
         {
-            "id": 1,
+            "id": 123,
             "title": "json-server",
             "author": "typicode"
         }
@@ -38,5 +38,19 @@
                 ]
             }
         ]
-    }
+    },
+    "devices": [
+        {
+            "id": "node1",
+            "name": "node1",
+            "desc": "dnndafsdfao",
+            "category": "registered"
+        },
+        {
+            "id": "node2",
+            "name": "node2",
+            "desc": "dn111fsdfao",
+            "category": "registered"
+        }
+    ]
 }

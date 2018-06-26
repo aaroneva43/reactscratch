@@ -2,6 +2,7 @@ import { combineReducers } from 'redux'
 import { GET_CONFIG, INVALIDATE_CONFIG } from '../actions/ActionTypes'
 import _ from 'lodash'
 import Immu from 'immutable'
+import { routerReducer } from 'react-router-redux'
 
 window.Immu = Immu  // debug
 
@@ -11,7 +12,7 @@ export const config = (state = {}, action) => {
 
     const entries = _.castArray(_.get(action, 'payload.entry')),
         entry = entries[0] || ''
-        debugger
+    
     switch (action.type) {
 
         case GET_CONFIG:
@@ -21,7 +22,7 @@ export const config = (state = {}, action) => {
             })).toJS()
 
         case `${GET_CONFIG}/SUCCESS'`:
-        
+
 
             return Immu.fromJS(state).mergeDeep(_.set({}, entry.split('/'), {
                 loading: false,
@@ -49,5 +50,6 @@ export const config = (state = {}, action) => {
     }
 }
 export default combineReducers({
-    config
+    config,
+    routerReducer
 })

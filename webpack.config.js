@@ -1,7 +1,9 @@
 
-const webpack = require('webpack');
-const htmlWebpackPlugin = require('html-webpack-plugin');
-const extractTextPlugin = require('extract-text-webpack-plugin');
+const webpack = require('webpack')
+const htmlWebpackPlugin = require('html-webpack-plugin')
+const extractTextPlugin = require('extract-text-webpack-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
 
 module.exports = {
     entry: __dirname + "/app/index.js",
@@ -63,7 +65,10 @@ module.exports = {
         }),
         new webpack.optimize.OccurrenceOrderPlugin(),
         // new webpack.optimize.UglifyJsPlugin(),
-        new extractTextPlugin("style.css")
+        new extractTextPlugin("style.css"),
+        new BundleAnalyzerPlugin({
+            analyzerPort: 8889
+        })
 
     ],
 }

@@ -22,6 +22,7 @@ class Devices extends Component {
     }
 
     render() {
+        
         const { isFetching } = this.props
 
 

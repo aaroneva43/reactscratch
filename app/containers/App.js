@@ -3,6 +3,7 @@ import React, { Component, createElement } from 'react'
 import ReactDOM from 'react-dom'
 
 import { Router, Switch, Redirect, Route, Link } from 'react-router-dom';
+import Nav from '../hoc/NavHOC';
 
 // const Modal = ({ match, history }) => {
 
@@ -97,12 +98,69 @@ import { Router, Switch, Redirect, Route, Link } from 'react-router-dom';
 //     )
 // }
 
+const menuData = [
+    {
+        name: 'dashboard',
+        text: 'Monitor',
+        icon: 'area-chart',
+        children: [
+            {
+                name: 'monitor',
+                text: 'Dashboard',
+                children: [{
+                    name: 'address',
+                    text: 'Address',
+                    children: [{
+                        name: 'shareresource_address4',
+                        widget: 'shareresource_address4',
+                        text: 'IPv4 Address'
+                    }, {
+                        name: 'shareresource_address_group4',
+                        widget: 'shareresource_address_group4',
+                        text: 'IPv4 Address Group'
+                    }]
+                }]
+            }, {
+                name: 'devices',
+                text: 'Source',
+                collection: true,
+                type: 'dropdown',
+                children: [
+                    {
+                        name: 'overview',
+                        text: 'Overview'
+                    },
+                    {
+                        name: 'links',
+                        text: 'Links'
+                    }
+                ]
+            }
+        ]
+    }, {
+        name: 'configuration',
+        text: 'Configuration',
+        icon: 'setting',
+        children: [
+            {
+                name: 'devices',
+                text: 'Device'
+            }, {
+                name: 'profiles',
+                text: 'Profile'
+            }
 
-const App = () => {
+        ]
+    }
+]
+
+
+const App = ({ location }) => {
 
     return (
         <div>
-            <div><Link to='/config'>config</Link></div>
+            <Nav {...{ menuData, location }} />
+            {/* <div><Link to='/config'>config</Link></div> */}
             <Route path="/config" render={({ location }) => { return <div>Config</div> }} />
         </div>
     );

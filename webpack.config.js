@@ -3,6 +3,8 @@ const webpack = require('webpack')
 const htmlWebpackPlugin = require('html-webpack-plugin')
 const extractTextPlugin = require('extract-text-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
+
 
 
 module.exports = {
@@ -26,7 +28,11 @@ module.exports = {
             use: [{
                 loader: "react-hot-loader"
             }, {
-                loader: "babel-loader"
+                loader: "babel-loader",
+                // options: {
+                //     plugins: ['lodash'],
+                //     presets: [['env', { 'modules': false, 'targets': { 'node': 4 } }]]
+                // }
             }],
             exclude: /node_modules/
         }, /* {
@@ -49,7 +55,7 @@ module.exports = {
                 fallback: "style-loader",
                 use: [{
                     loader: "css-loader"
-                },{
+                }, {
                     loader: "sass-loader"
                 }],
             }),
@@ -68,7 +74,8 @@ module.exports = {
         new extractTextPlugin("style.css"),
         new BundleAnalyzerPlugin({
             analyzerPort: 8889
-        })
+        }),
+        new LodashModuleReplacementPlugin()
 
     ],
 }

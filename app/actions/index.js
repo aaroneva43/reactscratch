@@ -12,3 +12,14 @@ export const getConfig = (cfg) => {
         }
     }
 }
+
+
+export const setConfg = (cfg) => {
+
+    if (!cfg['entry']) throw 'NO REST ENTRY SPECIFIED IN PAYLOAD'
+
+    return {
+        type: types.SET_CONFIG,
+        payload: cfg
+    }
+}

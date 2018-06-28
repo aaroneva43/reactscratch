@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { GET_CONFIG, INVALIDATE_CONFIG } from '../actions/ActionTypes'
+import { GET_CONFIG, SET_CONFIG, INVALIDATE_CONFIG } from '../actions/ActionTypes'
 import _ from 'lodash'
 import Immu from 'immutable'
 import { routerReducer } from 'react-router-redux'
@@ -35,6 +35,13 @@ export const config = (state = {}, action) => {
                 loading: false,
                 data: []
             })).toJS()
+
+        case `${SET_CONFIG}`:
+
+            return {
+                ...state,
+                [action.payload.entry]: action.payload.data
+            }
 
 
 

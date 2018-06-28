@@ -16,7 +16,6 @@ import { Router, Switch, Redirect, Route } from 'react-router-dom';
 import reducers from './reducers'
 
 
-
 const history = createHistory()
 const middleware = [routerMiddleware(history)]
 

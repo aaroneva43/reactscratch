@@ -5,14 +5,18 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider, connect } from 'react-redux'
 import thunk from 'redux-thunk'
 
-import { Router, Route, browserHistory } from 'react-router'
+import { Router, Route } from 'react-router'
+import { createBrowserHistory } from 'history'
 
+import MobxTimer from './containers/MobxTimer'
 import Posts from './containers/Posts'
 import Counter from './components/Counter'
+
 
 import reducers from './reducers'
 import { appActions, INVALIDATE_POSTS, RECEIVE_POSTS, REQUEST_POSTS } from './actions'
 
+const browserHistory = createBrowserHistory();
 const middleware = [thunk]
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -40,6 +44,9 @@ ReactDOM.render(
             } />
             <Route path="/b" component={
                 Posts
+            } />
+            <Route path="/mobxtimer" component={
+                MobxTimer
             } />
         </Router>
     </Provider>,

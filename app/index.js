@@ -20,10 +20,6 @@ const store = createStore(reducers, {}, composeEnhancers(
     applyMiddleware(...middleware)
 ))
 
-
-
-
-
 ReactDOM.render(
 
     <Provider store={store}>
